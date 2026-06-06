@@ -1,0 +1,167 @@
+{
+  "skill_name": "evaluation-framework",
+  "version": "1.0.0",
+  "description": "Test cases for the evaluation-framework skill. Covers diverse input types, domains, and user phrasings.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "startup-business-plan-text",
+      "prompt": "I have a startup idea I want to fully evaluate before pitching investors. We're building an AI-powered legal document review platform targeting small law firms in Southeast Asia. The market is fragmented, no one dominant player yet. We plan to charge $500/month per firm. We have a team of 4: 2 engineers, 1 lawyer, 1 business dev. We've spoken with 12 law firms and 9 said they'd pay for this. We're looking to raise $800K seed round. Can you give me a comprehensive evaluation of this?",
+      "expected_output": "Comprehensive evaluation report using Lean Canvas, SWOT, Porter's Five Forces, NPV/ROI, and Risk Matrix at minimum. Should identify non-obvious risks (e.g., regulatory compliance per country, data sovereignty) and opportunities (regional market consolidation). Report should have all 6 sections populated.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a1-1",
+          "text": "Report includes Executive Summary section",
+          "check": "response contains '## Executive Summary' or '# Executive Summary'"
+        },
+        {
+          "id": "a1-2",
+          "text": "At least 3 different named frameworks are applied",
+          "check": "response contains framework names (SWOT, Porter, Lean Canvas, Risk Matrix, NPV, etc.)"
+        },
+        {
+          "id": "a1-3",
+          "text": "Financial viability is assessed (ROI/NPV mentioned)",
+          "check": "response contains 'ROI' or 'NPV' or 'payback' or 'financial' section"
+        },
+        {
+          "id": "a1-4",
+          "text": "At least one non-obvious insight is surfaced",
+          "check": "response contains regulatory, data sovereignty, localization, or market fragmentation insight"
+        },
+        {
+          "id": "a1-5",
+          "text": "Recommended Next Steps section is present with specific actions",
+          "check": "response contains 'Next Steps' or 'Recommendations' with numbered/bulleted actions"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "tech-architecture-migration",
+      "prompt": "My company needs to migrate from a monolithic Java application (12 years old, ~800K lines of code) to a microservices architecture on AWS. We have 50 engineers, 18-month timeline, $3.2M budget. The app handles financial transactions — about 2 million per day. We have zero downtime requirements and SOC2 Type II compliance obligations. Please evaluate this migration plan comprehensively.",
+      "expected_output": "Should apply TOGAF ADM, DevSecOps Maturity, Risk Matrix, and potentially McKinsey 7S for the org change component. Must flag zero-downtime as high complexity, SOC2 as a critical constraint, and financial transaction data as a critical risk area. Financial assessment of $3.2M budget.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a2-1",
+          "text": "Technology domain frameworks are selected (TOGAF, DevSecOps, or equivalent)",
+          "check": "response contains 'TOGAF' or 'DevSecOps' or 'architecture' or 'maturity model'"
+        },
+        {
+          "id": "a2-2",
+          "text": "Risk Matrix is applied",
+          "check": "response contains 'Risk Matrix' or 'risk assessment' with likelihood and impact"
+        },
+        {
+          "id": "a2-3",
+          "text": "SOC2/compliance is flagged as critical constraint",
+          "check": "response mentions 'SOC2' or 'compliance' as risk or constraint"
+        },
+        {
+          "id": "a2-4",
+          "text": "Zero-downtime requirement is analyzed",
+          "check": "response mentions 'zero downtime' or 'blue-green' or 'canary' or 'migration strategy'"
+        },
+        {
+          "id": "a2-5",
+          "text": "Priority Matrix or Recommended Actions present",
+          "check": "response contains 'Priority Matrix' or 'Next Steps' or 'Recommended Actions'"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "policy-program-evaluation",
+      "prompt": "We're a government agency launching a $5M digital literacy program for rural communities in Vietnam. The program will train 10,000 farmers over 2 years to use mobile banking and e-commerce platforms. We have 15 provincial coordinators and partnerships with 3 telecoms. Success will be measured by how many participants complete the training and start transacting online within 6 months. Please build us a full evaluation framework.",
+      "expected_output": "Should apply Theory of Change (primary), Kirkpatrick Model, Cost-Benefit Analysis, and Risk Matrix. Theory of Change should map the full input→impact chain. Should flag assumption gaps (connectivity in rural areas, smartphone ownership rates). Should identify Kirkpatrick Level 3 (behavior change) as the key measurement challenge.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a3-1",
+          "text": "Theory of Change framework is applied",
+          "check": "response contains 'Theory of Change' or 'logic chain' or 'inputs → activities → outputs'"
+        },
+        {
+          "id": "a3-2",
+          "text": "Kirkpatrick Model is applied or recommended",
+          "check": "response contains 'Kirkpatrick' or 'Level 1/2/3/4' or 'reaction, learning, behavior, results'"
+        },
+        {
+          "id": "a3-3",
+          "text": "Key assumptions are identified",
+          "check": "response mentions 'assumption' at least twice with specific examples"
+        },
+        {
+          "id": "a3-4",
+          "text": "Financial/cost analysis is included",
+          "check": "response mentions cost per participant, cost-benefit, or budget analysis"
+        },
+        {
+          "id": "a3-5",
+          "text": "Non-obvious insight surfaced (connectivity, smartphone access, or literacy prerequisite)",
+          "check": "response mentions connectivity, smartphone ownership, prerequisite literacy, or digital divide"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "vague-input-clarification",
+      "prompt": "I have a new project idea I want to evaluate. Can you help?",
+      "expected_output": "Skill should enter clarification mode. Should ask 2-3 targeted questions (goal, stakeholders, constraints) rather than proceeding with a generic framework. Should NOT produce a full evaluation report without more information.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a4-1",
+          "text": "Skill asks clarifying questions instead of producing a full report",
+          "check": "response contains a question mark AND does not contain 'Executive Summary'"
+        },
+        {
+          "id": "a4-2",
+          "text": "At least 2 specific questions are asked",
+          "check": "response contains at least 2 question marks in question sentences"
+        },
+        {
+          "id": "a4-3",
+          "text": "Questions address goal, stakeholders, or constraints",
+          "check": "response contains 'goal' or 'objective' or 'stakeholder' or 'constraint' in question context"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "product-feature-requirement",
+      "prompt": "Our product team wants to add an AI-powered chatbot to our SaaS HR platform. The chatbot should handle employee onboarding questions, leave requests, and payroll queries. We serve 200 mid-size companies (500-5000 employees). Dev team is 8 engineers. Timeline: 6 months. Budget: $400K. We already have GPT-4 API access. Our NPS is currently 42. We want to increase it by 15 points post-launch. Please evaluate this feature requirement.",
+      "expected_output": "Should apply JTBD, Kano Model, OKR Alignment Audit, Risk Matrix, and NPV/ROI. Should flag that NPS +15 target needs validation against user research. Should identify JTBD for 'why do employees contact HR at all?' as key upstream question.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a5-1",
+          "text": "Product domain frameworks applied (JTBD, Kano, or Design Thinking)",
+          "check": "response contains 'Jobs-To-Be-Done' or 'JTBD' or 'Kano' or 'Design Thinking'"
+        },
+        {
+          "id": "a5-2",
+          "text": "OKR or success criteria quality is assessed",
+          "check": "response mentions 'OKR' or 'NPS target' or 'success criteria' or 'measurable'"
+        },
+        {
+          "id": "a5-3",
+          "text": "Risk Matrix or risk analysis is present",
+          "check": "response contains 'risk' in structured analysis context"
+        },
+        {
+          "id": "a5-4",
+          "text": "Financial or ROI analysis covers the $400K budget",
+          "check": "response mentions '$400' or 'ROI' or 'cost per' in financial context"
+        },
+        {
+          "id": "a5-5",
+          "text": "Score table or Priority Matrix is present",
+          "check": "response contains a markdown table with scores or a Priority Matrix section"
+        }
+      ]
+    }
+  ]
+}
