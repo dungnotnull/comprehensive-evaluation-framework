@@ -1,6 +1,6 @@
-# evaluation-framework — Claude Skill
+# evaluation-framework - Skill
 
-Generate comprehensive, multi-dimensional evaluation frameworks for any project, requirement, business idea, or document — grounded in 20+ world-renowned analytical methodologies.
+Generate comprehensive, multi-dimensional evaluation frameworks for any project, requirement, business idea, or document - grounded in 20+ world-renowned analytical methodologies.
 
 ## What It Does
 
